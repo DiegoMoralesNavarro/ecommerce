@@ -4,6 +4,8 @@ namespace Hcode;
 
 use Rain\Tpl;
 
+// sistema padrão para rotas
+
 class Page {
 
 	private $tpl;
