@@ -4,6 +4,10 @@ namespace Hcode;
 
 class Model {
 
+	public $fields = [
+		"desperson", "deslogin", "nrphone", "desemail", "despassword", "inadmin"
+	];
+
 	private $values = [];
 
 	public function setData($data)
