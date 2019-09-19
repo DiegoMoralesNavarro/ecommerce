@@ -13,7 +13,10 @@ class User extends Model {
 	// 	"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
 	// ];
 
-	
+	public $fields = [
+		"iduser", "idperson", "desperson", "deslogin", "nrphone", "desemail", "despassword", "inadmin"
+	];
+
 	public static function login($login, $password):User
 	{
 
@@ -25,9 +28,6 @@ class User extends Model {
 
 		if (count($results) === 0) {
 			throw new \Exception("Não foi possível fazer login.");
-			
-			
-		}else{
 		}
 
 		$data = $results[0];
@@ -42,9 +42,8 @@ class User extends Model {
 			return $user;
 
 		} else {
-			throw new \Exception("Não foi possível fazer login.2");
-			
-			
+
+			throw new \Exception("Não foi possível fazer login.");
 
 		}
 
@@ -67,7 +66,7 @@ class User extends Model {
 			||
 			!(int)$_SESSION[User::SESSION]["iduser"] > 0
 			||
-			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
+			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin
 		) {
 			
 			header("Location: /admin/login");
@@ -76,7 +75,6 @@ class User extends Model {
 		}
 
 	}
-
 
 	public static function listAll(){
 
@@ -98,14 +96,7 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		// // pdesperson VARCHAR(64), 
-		// // pdeslogin VARCHAR(64), 
-		// // pdespassword VARCHAR(256), 
-		// // pdesemail VARCHAR(128), 
-		// // pnrphone BIGINT, 
-		// // pinadmin TINYINT
-
-		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin", array(
 			":desperson"=>$this->getdesperson(),
 			":deslogin"=>$this->getdeslogin(),
 			":despassword"=>$this->getdespassword(),
@@ -115,7 +106,10 @@ class User extends Model {
 		));
 
 
-		$this->setData($results[0]);
+		
+		if(count($result) > 0){
+			$this->setData($result[0]);
+		}
 	}
 
 }

@@ -4,9 +4,9 @@ namespace Hcode;
 
 class Model {
 
-	public $fields = [
-		"desperson", "deslogin", "nrphone", "desemail", "despassword", "inadmin"
-	];
+	// public $fields = [
+	// 	"desperson", "deslogin", "nrphone", "desemail", "despassword", "inadmin"
+	// ];
 
 	private $values = [];
 
