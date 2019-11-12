@@ -9,8 +9,7 @@ class Product extends Model {
 
 
 	protected $fields = [
-		"idcategory","desproduct","vlprice","vlwidth","vlheigth","vllength","vlweigth","desurl","dtregister", "idproduct"
-
+		"idcategory","desproduct","vlprice","vlwidth","vlheigth","vllength","vlweigth","desurl","dtregister", "idproduct","file"
 	];
 
 // ,"idcategory","vlprice","vlwidth","vlheigth","vllength","vlweigth","desurl","dtregister", "idproduct"
@@ -97,6 +96,8 @@ public function checkPhoto()
 		}
 		return $this->setdesphoto($url);
 	}
+
+
 	public function getValues()
 	{
 		$this->checkPhoto();
@@ -107,11 +108,14 @@ public function checkPhoto()
 	
 	public function setPhoto($file)
 	{
+		//PEGAR o nome do arquivo
 		$extension = explode('.', $file['name']);
+		//pegar a ultima posição
 		$extension = end($extension);
 		switch ($extension) {
 			case "jpg":
 			case "jpeg":
+					// função do GD "imagecreatefromjpeg"
 			$image = imagecreatefromjpeg($file["tmp_name"]);
 			break;
 			case "gif":
@@ -127,10 +131,17 @@ public function checkPhoto()
 			"img" . DIRECTORY_SEPARATOR . 
 			"products" . DIRECTORY_SEPARATOR . 
 			$this->getidproduct() . ".jpg";
+
 		imagejpeg($image, $dist);
+
 		imagedestroy($image);
+
+		//carregar a foto
 		$this->checkPhoto();
 	}
+
+
+
 	public function getFromURL($desurl)
 	{
 		$sql = new Sql();
@@ -139,6 +150,9 @@ public function checkPhoto()
 		]);
 		$this->setData($rows[0]);
 	}
+
+
+
 	public function getCategories()
 	{
 		$sql = new Sql();
