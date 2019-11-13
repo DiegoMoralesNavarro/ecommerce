@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -16,8 +16,8 @@
 <section class="content">
 
   <div class="row">
-  	<div class="col-md-12">
-  		<div class="box box-success">
+    <div class="col-md-12">
+      <div class="box box-success">
         <div class="box-header with-border">
           <h3 class="box-title">Novo Produto</h3>
         </div>
@@ -38,23 +38,21 @@
               <input type="number" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00">
             </div>
             <div class="form-group">
-              <label for="vlheigth">Altura</label>
-              <input type="number" class="form-control" id="vlheigth" name="vlheigth" step="0.01" placeholder="0.00">
+              <label for="vlheight">Altura</label>
+              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00">
             </div>
-             <div class="form-group">
+            <div class="form-group">
               <label for="vllength">Comprimento</label>
               <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00">
             </div>
             <div class="form-group">
-              <label for="vlweigth">Peso</label>
-              <input type="number" class="form-control" id="vlweigth" name="vlweigth" step="0.01" placeholder="0.00">
+              <label for="vlweight">Peso</label>
+              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00">
             </div>
-
-             <div class="form-group">
+            <div class="form-group">
               <label for="desurl">URL</label>
-              <input type="text" class="form-control" id="desurl" name="desurl" >
+              <input type="text" class="form-control" id="desurl" name="desurl">
             </div>
-
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
@@ -62,10 +60,10 @@
           </div>
         </form>
       </div>
-  	</div>
+    </div>
   </div>
 
 </section>
 <!-- /.content -->
 </div>
-<!-- /.content-wrapper
+<!-- /.content-wrapper -->
