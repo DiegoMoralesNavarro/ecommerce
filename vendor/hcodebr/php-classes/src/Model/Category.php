@@ -9,7 +9,7 @@ class Category extends Model {
 
 
 	protected $fields = [
-		"iduser","descategory","idcategory"
+		"iduser","descategory","idcategory","idproduct"
 
 	];
 
@@ -79,7 +79,10 @@ class Category extends Model {
 	public function getProducts($related = true)
 	{
 		$sql = new Sql();
+
 		if ($related === true) {
+
+
 			return $sql->select("
 				SELECT * FROM tb_products WHERE idproduct IN(
 					SELECT a.idproduct
@@ -90,7 +93,11 @@ class Category extends Model {
 			", [
 				':idcategory'=>$this->getidcategory()
 			]);
+
+
 		} else {
+
+
 			return $sql->select("
 				SELECT * FROM tb_products WHERE idproduct NOT IN(
 					SELECT a.idproduct
@@ -101,9 +108,13 @@ class Category extends Model {
 			", [
 				':idcategory'=>$this->getidcategory()
 			]);
+
+
 		}
 	}
-	public function getProductsPage($page = 1, $itemsPerPage = 8)
+
+
+	public function getProductsPage($page = 1, $itemsPerPage = 4)
 	{
 		$start = ($page - 1) * $itemsPerPage;
 		$sql = new Sql();
@@ -124,6 +135,11 @@ class Category extends Model {
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
 	}
+
+
+
+
+
 	public function addProduct(Product $product)
 	{
 		$sql = new Sql();
@@ -132,6 +148,8 @@ class Category extends Model {
 			':idproduct'=>$product->getidproduct()
 		]);
 	}
+
+
 	public function removeProduct(Product $product)
 	{
 		$sql = new Sql();
@@ -140,43 +158,50 @@ class Category extends Model {
 			':idproduct'=>$product->getidproduct()
 		]);
 	}
+
+
+
 			
-	public static function getPage($page = 1, $itemsPerPage = 10)
-	{
-		$start = ($page - 1) * $itemsPerPage;
-		$sql = new Sql();
-		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_categories 
-			ORDER BY descategory
-			LIMIT $start, $itemsPerPage;
-		");
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-		return [
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-		];
-	}
-	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
-	{
-		$start = ($page - 1) * $itemsPerPage;
-		$sql = new Sql();
-		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_categories 
-			WHERE descategory LIKE :search
-			ORDER BY descategory
-			LIMIT $start, $itemsPerPage;
-		", [
-			':search'=>'%'.$search.'%'
-		]);
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-		return [
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-		];
-	}
+	// public static function getPage($page = 1, $itemsPerPage = 10)
+	// {
+	// 	$start = ($page - 1) * $itemsPerPage;
+	// 	$sql = new Sql();
+	// 	$results = $sql->select("
+	// 		SELECT SQL_CALC_FOUND_ROWS *
+	// 		FROM tb_categories 
+	// 		ORDER BY descategory
+	// 		LIMIT $start, $itemsPerPage;
+	// 	");
+	// 	$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+	// 	return [
+	// 		'data'=>$results,
+	// 		'total'=>(int)$resultTotal[0]["nrtotal"],
+	// 		'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+	// 	];
+	// }
+	// public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+	// {
+	// 	$start = ($page - 1) * $itemsPerPage;
+	// 	$sql = new Sql();
+	// 	$results = $sql->select("
+	// 		SELECT SQL_CALC_FOUND_ROWS *
+	// 		FROM tb_categories 
+	// 		WHERE descategory LIKE :search
+	// 		ORDER BY descategory
+	// 		LIMIT $start, $itemsPerPage;
+	// 	", [
+	// 		':search'=>'%'.$search.'%'
+	// 	]);
+	// 	$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+	// 	return [
+	// 		'data'=>$results,
+	// 		'total'=>(int)$resultTotal[0]["nrtotal"],
+	// 		'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+	// 	];
+	// }
+
+
+
+	
 }
  ?>

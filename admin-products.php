@@ -1,10 +1,10 @@
 <?php 
 
 
+
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 use \Hcode\Model\Product;
-
 
 $app->get('/admin/products', function() {
 
@@ -74,6 +74,8 @@ $app->post("/admin/products/:idproduct", function($idproduct){
 	header('Location: /admin/products');
 	exit;
 });
+
+
 
 
 

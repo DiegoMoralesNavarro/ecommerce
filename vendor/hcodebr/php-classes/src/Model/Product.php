@@ -12,8 +12,6 @@ class Product extends Model {
 		"idcategory","desproduct","vlprice","vlwidth","vlheigth","vllength","vlweigth","desurl","dtregister", "idproduct","file"
 	];
 
-// ,"idcategory","vlprice","vlwidth","vlheigth","vllength","vlweigth","desurl","dtregister", "idproduct"
-
 
 
 	public static function listAll()
@@ -65,8 +63,10 @@ public function save()
 	}
 
 
-	public function delete()
+
+public function delete()
 	{
+		
 		$sql = new Sql();
 		$sql->query("DELETE FROM tb_products WHERE idproduct = :idproduct", [
 			':idproduct'=>$this->getidproduct()
@@ -76,6 +76,15 @@ public function save()
 		Category::updateFile();
 	}
 
+	
+
+	// public function delete()
+	// {
+	// 	$sql = new Sql();
+	// 	$sql->query("DELETE FROM tb_products WHERE idproduct = :idproduct", [
+	// 		':idproduct'=>$this->getidproduct()
+	// 	]);
+	// }
 
 	
 
